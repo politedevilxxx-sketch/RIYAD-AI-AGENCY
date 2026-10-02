@@ -6,7 +6,27 @@
 :root{--bg:#050b24;--p:#0c1744;--p2:#101e56;--b:#26379a;--t:#e8ecff;--m:#8fa0d8;--g:#22d36b;--bl:#2f7bff;box-sizing:border-box}
 html{color-scheme:dark}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:radial-gradient(1200px 600px at 30% -10%,#12236e,#050b24 60%) var(--bg);color:var(--t);font:14px/1.4 "Segoe UI",Inter,system-ui,sans-serif;min-height:100vh}
+body
+    <!-- Login / Register Modal -->
+<div id="authModal" style="position:fixed;inset:0;background:rgba(5,11,36,0.95);display:flex;justify-content:center;align-items:center;z-index:9999;">
+  <div style="background:#0c1744;border:1px solid #26379a;padding:28px;border-radius:16px;max-width:380px;width:90%;text-align:center;box-shadow:0 0 30px rgba(47,123,255,0.4);">
+    <h2 id="authTitle" style="color:#2f7bff;margin-bottom:6px;font-size:22px;">Welcome Back 👋</h2>
+    <p style="color:#8fa0d8;font-size:13px;margin-bottom:20px;">Please login to access AI Agents</p>
+    
+    <form onsubmit="handleAuth(event)" style="display:flex;flex-direction:column;gap:12px;">
+      <input type="email" id="authEmail" placeholder="Email Address" required style="padding:12px;border-radius:8px;background:#050b24;border:1px solid #26379a;color:#fff;outline:none;">
+      <input type="password" id="authPass" placeholder="Password" required style="padding:12px;border-radius:8px;background:#050b24;border:1px solid #26379a;color:#fff;outline:none;">
+      
+      <button type="submit" id="authBtn" style="background:linear-gradient(#2f7bff,#4a52ff);color:#fff;padding:12px;border-radius:8px;font-weight:bold;cursor:pointer;border:none;margin-top:8px;">Login</button>
+    </form>
+
+    <div style="margin-top:16px;font-size:12px;color:#8fa0d8;">
+      <span id="toggleText">Don't have an account?</span> 
+      <a href="javascript:void(0)" onclick="toggleAuthMode()" id="toggleLink" style="color:#2f7bff;font-weight:bold;text-decoration:none;">Sign Up</a>
+    </div>
+  </div>
+</div>
+    {background:radial-gradient(1200px 600px at 30% -10%,#12236e,#050b24 60%) var(--bg);color:var(--t);font:14px/1.4 "Segoe UI",Inter,system-ui,sans-serif;min-height:100vh}
 button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
 button:focus-visible{outline:2px solid #7aa5ff}
 header{display:flex;align-items:center;gap:18px;padding:12px 20px;border-bottom:1px solid var(--b);flex-wrap:wrap}
