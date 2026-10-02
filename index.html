@@ -189,6 +189,13 @@ $("bell").onclick = () => { $("bn").style.display = "none"; toast("Notifications
 const d = new Date(); $("cr").textContent = "Today, " + clock();
 
 build(); start(false); drawCanvasPreview();
+<!-- Supabase Connect -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  const SUPABASE_URL = "https://wbcgvywtmnpwxvkdirrb.supabase.co";
+  const SUPABASE_ANON_KEY = "sb_publishable_U0FEiMvYZg6lvpt4I1Z2Zg_7KwHDeqf";
+
+  const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 </script>
 </body>
 </html>
