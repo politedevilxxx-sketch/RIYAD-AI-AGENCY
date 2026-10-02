@@ -4,6 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>RIYAD AI AGENCY</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
     :root{--bg:#050b24;--p:#0c1744;--p2:#101e56;--b:#26379a;--t:#e8ecff;--m:#8fa0d8;--g:#22d36b;--bl:#2f7bff;box-sizing:border-box}
     html{color-scheme:dark}
@@ -53,22 +55,45 @@
     .vid-box canvas{width:100%;height:100%;object-fit:cover}
     footer{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:14px 24px;border-top:1px solid var(--b);color:var(--m)}
     #toast{position:fixed;left:50%;bottom:20px;transform:translate(-50%,40px);opacity:0;background:#1b3aa8;border:1px solid #6b8cff;padding:10px 18px;border-radius:12px;transition:.3s;pointer-events:none;z-index:9}#toast.s{opacity:1;transform:translate(-50%,0)}
+    @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+    .animate-float { animation: float 4s ease-in-out infinite; }
     @media(max-width:1100px){.wrap{grid-template-columns:1fr}.right{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}.team,.aud{display:none}}
     @media(max-width:700px){.grid,.bot2{grid-template-columns:1fr}.hero{flex-wrap:wrap}}
   </style>
 </head>
 <body>
 
-  <!-- Google Login Modal -->
-  <div id="authModal" style="position:fixed;inset:0;background:rgba(5,11,36,0.95);display:flex;justify-content:center;align-items:center;z-index:9999;">
-    <div style="background:#0c1744;border:1px solid #26379a;padding:32px;border-radius:16px;max-width:380px;width:90%;text-align:center;box-shadow:0 0 30px rgba(47,123,255,0.4);">
-      <h2 style="color:#2f7bff;margin-bottom:8px;font-size:22px;">Welcome to RIYAD AI 🚀</h2>
-      <p style="color:#8fa0d8;font-size:13px;margin-bottom:24px;">Sign in with Google to access 24/7 AI Agents</p>    
+  <!-- Modern Animated Login Modal -->
+  <div id="authModal" style="position:fixed;inset:0;background:rgba(5,11,36,0.95);backdrop-filter:blur(10px);display:flex;justify-content:center;align-items:center;z-index:9999;">
+    <div class="animate-float" style="background:linear-gradient(160deg,#101e56,#0c1744);border:1px solid #26379a;padding:32px;border-radius:24px;max-width:400px;width:90%;text-align:center;box-shadow:0 0 40px rgba(47,123,255,0.3);">
+      <h2 style="color:#2f7bff;margin-bottom:6px;font-size:24px;font-weight:bold;">RIYAD AI AGENCY 🚀</h2>
+      <p style="color:#8fa0d8;font-size:13px;margin-bottom:20px;">Sign in or create account to access 24/7 AI Agents</p>    
       
-      <button onclick="loginWithGoogle()" style="background:#ffffff;color:#000000;padding:12px 20px;border-radius:10px;font-weight:bold;cursor:pointer;border:none;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;font-size:15px;box-shadow:0 2px 10px rgba(0,0,0,0.2);">
-        <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
-        Continue with Google
+      <!-- GitHub Login Button -->
+      <button onclick="loginWithGitHub()" style="background:#24292e;color:#ffffff;padding:12px 20px;border-radius:12px;font-weight:bold;cursor:pointer;border:none;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;font-size:15px;box-shadow:0 4px 12px rgba(0,0,0,0.3);margin-bottom:16px;transition:0.2s;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        Continue with GitHub
       </button>
+
+      <div style="display:flex;align-items:center;gap:10px;margin:14px 0;color:#8fa0d8;font-size:12px;">
+        <hr style="flex:1;border-color:#26379a;"> Or Email <hr style="flex:1;border-color:#26379a;">
+      </div>
+
+      <!-- Email & Password Form -->
+      <form id="emailLoginForm" style="display:flex;flex-direction:column;gap:10px;text-align:left;">
+        <div>
+          <label style="font-size:12px;color:#8fa0d8;">Email</label>
+          <input type="email" id="userEmail" required placeholder="your@email.com" style="width:100%;padding:10px;background:#050b24;border:1px solid #26379a;border-radius:8px;color:#fff;font-size:14px;margin-top:4px;">
+        </div>
+        <div>
+          <label style="font-size:12px;color:#8fa0d8;">Password</label>
+          <input type="password" id="userPassword" required placeholder="••••••••" style="width:100%;padding:10px;background:#050b24;border:1px solid #26379a;border-radius:8px;color:#fff;font-size:14px;margin-top:4px;">
+        </div>
+        <button type="submit" style="background:linear-gradient(90deg,#2f7bff,#4a52ff);color:#fff;padding:11px;border-radius:8px;font-weight:bold;cursor:pointer;margin-top:6px;box-shadow:0 0 12px rgba(47,123,255,0.4);">
+          Login / Sign Up
+        </button>
+      </form>
+      <p id="authMessage" style="font-size:12px;margin-top:10px;color:#8fa0d8;text-align:center;"></p>
     </div>
   </div>
 
@@ -76,7 +101,7 @@
     <div class="logo"><i>▶</i><div><b>RIYAD AI AGENCY</b><small>Your 24/7 YouTube Growth Partner</small></div></div>
     <nav id="nav"><button class="on">Dashboard</button><button>Projects</button><button>Templates</button><button>Settings</button></nav>
     <span class="live">24/7 Live</span><button class="bell" id="bell" aria-label="Notifications">🔔<span id="bn">3</span></button>
-    <div class="user"><i>PD</i><div><b>PD Official</b><small>Free Plan</small></div></div>
+    <div class="user"><i>PD</i><div id="userInfo"><b>PD Official</b><small>Free Plan</small></div></div>
   </header>
 
   <div class="wrap">
@@ -109,25 +134,58 @@
     const A=[["Research Agent","Finding trending topics & latest news (USA)","🔎","#3b82f6","Research agent found trending topics"], ["Analyzer Agent","Analyzing audience, trends & keywords","📊","#a855f7","Analyzer agent completed analysis"], ["Category Agent","Selecting best category for maximum reach","🧩","#f59e0b","Category agent selected: Motivation"], ["Script Agent","Writing engaging script (voice + subtitle)","📝","#22c55e","Script agent finished the script"], ["Video Agent","Editing video, adding effects & transitions","🎥","#ef4444","Visual agent generated video scenes"], ["Thumbnail Agent","Creating attractive thumbnail (CTR optimized)","🖼️","#06b6d4","Thumbnail agent designed thumbnail"], ["SEO Agent","Generating title, description, tags, hashtags","🏷️","#a78bfa","SEO agent created metadata"], ["Quality Agent","Checking grammar, quality & safety","✅","#3b9bff","Quality check agent finished review"], ["Finalizer Agent","Combining everything into a final package","📦","#c026d3","Finalizer agent prepared final package"]]; let P=[100,100,100,100,95,80,100,70,0],timer; const $=id=>document.getElementById(id),pad=n=>String(n).padStart(2,"0"); const clock=()=>{const d=new Date();return pad(d.getHours())+":"+pad(d.getMinutes())}; function toast(t){const e=$("toast");e.textContent=t;e.classList.add("s");clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove("s"),2200)} function build(){$("grid").innerHTML=A.map((a,i)=>`<div class="ag" style="--c:${a[3]}"><div class="top"><span class="em">${a[2]}</span><div><h3>${i+1}. ${a[0]}</h3><p>${a[1]}</p></div></div><div class="bar"><i id="b${i}"></i></div><div class="st" id="s${i}"></div></div>`).join(""); $("tl").innerHTML='<li>👔 CEO Agent<span class="dot"></span></li>'+A.slice(0,9).map(a=>`<li>${a[2]} ${a[0]}<span class="dot"></span></li>`).join("")} function render(){let cur=-1;P.forEach((v,i)=>{$("b"+i).style.width=v+"%";const s=$("s"+i); if(v>=100){s.className="st ok";s.innerHTML="<span>✔ Completed</span><span>100%</span>"} else if(v>0){s.className="st run";s.innerHTML=`<span>◌ Processing...</span><span>${Math.floor(v)}%</span>`;cur=i} else{s.className="st wait";s.innerHTML="<span>○ Pending...</span><span></span>"}}); if(cur<0)cur=P.every(v=>v>=100)?8:P.findIndex(v=>v<100); const a=A[Math.max(cur,0)],v=Math.floor(P[Math.max(cur,0)]); $("ct").textContent=a[0];$("cd").textContent=a[1];$("cb").style.width=v+"\%";$("cp").textContent=v+"%"; const ok=P.every(v=>v>=100);$("dn").disabled=!ok;$("dn").style.opacity=ok?1:.5; $("dt").textContent=ok?"All Done!":"Almost Done!";$("ds").textContent=ok?"Your package is ready to download.":"Final package will be ready soon."} function log(t){const d=document.createElement("div");d.innerHTML=`<span class="dot" style="margin-top:6px;flex:none"></span><time>${clock()}</time><span>${t}</span>`;$("feed").prepend(d)} function tick(){let moved=false; for(let i=0;i<9;i++){if(P[i]>=100)continue; const ready=i===0||P[i-1]>=(i<5?100:60); if(ready||P[i]>0){P[i]=Math.min(100,P[i]+2+Math.random()*4);moved=true;if(P[i]>=100){P[i]=100;log(A[i][4]);if(i===8)finish()}}} if(!moved)clearInterval(timer);render()} function finish(){clearInterval(timer);toast("Final package is ready!");drawCanvasPreview()} function start(reset){clearInterval(timer);P=reset?[0,...Array(8).fill(0)]:[100,100,100,100,95,80,100,70,0];if(reset){$("feed").innerHTML="";log("New project started")}render();timer=setInterval(tick,400)} function downloadFile(content, fileName, mimeType) {const blob = new Blob([content], { type: mimeType }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = fileName; document.body.appendChild(a); a.click(); setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 100); } const SCRIPT_TEXT = "Title: Never Give Up - Shorts\n\n[0:00] Every storm runs out of rain.\n[0:10] Keep moving forward.\n[0:20] Your success is waiting."; const SEO_TEXT = "Title: Never Give Up | AI Shorts\nTags: motivation, success, viral, shorts\nHashtags: #motivation #shorts"; $("dn").onclick = () => {downloadFile(SCRIPT_TEXT, "Script.txt", "text/plain"); setTimeout(() => downloadFile(SEO_TEXT, "SEO-Details.txt", "text/plain"), 300); toast("Downloading Script & SEO Files..."); }; $("dall").onclick = () => {downloadFile(SCRIPT_TEXT + "\n\n" + SEO_TEXT, "Complete_Package.txt", "text/plain"); toast("Downloading Complete Package..."); }; const canvas = $("previewCanvas"), ctx = canvas.getContext("2d"); let isPlaying = false, animId, frame = 0; function drawCanvasPreview() {ctx.fillStyle = "#0a1450"; ctx.fillRect(0, 0, canvas.width, canvas.height); ctx.fillStyle = "#ffe14d"; ctx.font = "bold 20px sans-serif"; ctx.textAlign = "center"; ctx.fillText("NEVER GIVE UP", canvas.width / 2, canvas.height / 2 + (Math.sin(frame / 6) * 6)); } $("playBtn").onclick = () => {isPlaying = !isPlaying; $("playBtn").textContent = isPlaying ? "⏸ Pause" : "▶ Play Preview"; if (isPlaying) {function loop() {if (!isPlaying) return; frame++; drawCanvasPreview(); animId = requestAnimationFrame(loop); } loop(); } else { cancelAnimationFrame(animId); } }; $("np").onclick = () => start(true); $("bell").onclick = () => { $("bn").style.display = "none"; toast("Notifications cleared") }; const d = new Date(); $("cr").textContent = "Today, " + clock(); build(); start(false); drawCanvasPreview();
   </script>
 
-  <!-- Supabase Connect -->
+  <!-- Supabase Authentication Integration -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
     const SUPABASE_URL = "https://wbcgvywtmnpwxvkdirrb.supabase.co";
     const SUPABASE_ANON_KEY = "sb_publishable_U0FEiMvYZg6lvpt4I1Z2Zg_7KwHDeqf";
-    const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-    async function loginWithGoogle() {
-        const { data, error } = await supabase.auth.signInWithOAuth({
-            provider: 'google',
+    // GitHub OAuth Login
+    async function loginWithGitHub() {
+        const { error } = await supabase.auth.signInWithOAuth({
+            provider: 'github',
             options: { redirectTo: window.location.origin }
         });
         if (error) toast("Error: " + error.message);
     }
 
+    // Email & Password Login / Signup Handler
+    document.getElementById("emailLoginForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const email = document.getElementById("userEmail").value;
+        const password = document.getElementById("userPassword").value;
+        const msg = document.getElementById("authMessage");
+
+        msg.textContent = "Processing...";
+        msg.style.color = "#2f7bff";
+
+        // Try Login
+        const { error: loginError } = await supabase.auth.signInWithPassword({ email, password });
+
+        if (loginError) {
+            // If account doesn't exist, try auto sign-up
+            const { error: signUpError } = await supabase.auth.signUp({ email, password });
+            if (signUpError) {
+                msg.textContent = "Error: " + signUpError.message;
+                msg.style.color = "#ff3b4e";
+            } else {
+                msg.textContent = "Success! Account created & logged in.";
+                msg.style.color = "#22d36b";
+                setTimeout(() => { document.getElementById("authModal").style.display = "none"; }, 1000);
+            }
+        } else {
+            msg.textContent = "Login Successful!";
+            msg.style.color = "#22d36b";
+            setTimeout(() => { document.getElementById("authModal").style.display = "none"; }, 1000);
+        }
+    });
+
+    // Check Active User Session on Load
     window.addEventListener("DOMContentLoaded", async () => {
         const { data: { user } } = await supabase.auth.getUser();
         if (user) {
-            document.querySelector(".user b").textContent = user.user_metadata.full_name || user.email.split('@')[0];
+            document.getElementById("userInfo").innerHTML = `<b>${user.user_metadata.full_name || user.email.split('@')[0]}</b><small>Pro Plan</small>`;
             document.getElementById("authModal").style.display = "none";
         }
     });
