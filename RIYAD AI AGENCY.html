@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RIYAD AI AGENCY</title>
+<style>
+:root{--bg:#050b24;--p:#0c1744;--p2:#101e56;--b:#26379a;--t:#e8ecff;--m:#8fa0d8;--g:#22d36b;--bl:#2f7bff;box-sizing:border-box}
+html{color-scheme:dark}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:radial-gradient(1200px 600px at 30% -10%,#12236e,#050b24 60%) var(--bg);color:var(--t);font:14px/1.4 "Segoe UI",Inter,system-ui,sans-serif;min-height:100vh}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+button:focus-visible{outline:2px solid #7aa5ff}
+header{display:flex;align-items:center;gap:18px;padding:12px 20px;border-bottom:1px solid var(--b);flex-wrap:wrap}
+.logo{display:flex;gap:10px;align-items:center;min-width:240px}.logo i{width:42px;height:42px;border-radius:10px;background:linear-gradient(135deg,#2f7bff,#7b3bff);display:grid;place-items:center;font-style:normal;font-size:20px}
+.logo b{font-size:20px;display:block}.logo small{color:var(--m)}
+nav{display:flex;gap:6px;flex:1;justify-content:center;flex-wrap:wrap}
+nav button{padding:9px 20px;border-radius:12px;color:var(--m)}nav button.on{background:linear-gradient(#2f7bff,#4a52ff);color:#fff;box-shadow:0 0 18px #2f7bff88}
+.live{padding:6px 14px;border:1px solid #1d6b47;border-radius:20px;background:#0a2a25;color:var(--g)}
+.live:before,.dot{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--g);margin-right:6px}
+.dot{margin:0}
+.bell{position:relative;font-size:20px;padding:4px 8px}.bell span{position:absolute;top:-2px;right:0;background:#ff3b4e;border-radius:50%;width:17px;height:17px;font-size:11px;display:grid;place-items:center}
+.user{display:flex;gap:10px;align-items:center}.user i{width:40px;height:40px;border-radius:50%;background:#1b3aa8;border:2px solid #4b7bff;display:grid;place-items:center;font-style:normal;font-weight:700}.user small{color:var(--m);display:block}
+.wrap{display:grid;grid-template-columns:210px minmax(0,1fr) 290px;gap:14px;padding:14px 18px}
+.card{background:linear-gradient(160deg,var(--p2),var(--p));border:1px solid var(--b);border-radius:14px;padding:12px}
+aside .np{width:100%;padding:13px;border-radius:12px;background:linear-gradient(#2f7bff,#4a52ff);font-weight:600;font-size:16px;margin-bottom:12px;box-shadow:0 0 18px #2f7bff66}
+.menu button{display:flex;gap:12px;width:100%;padding:11px 12px;border-radius:10px;color:var(--m);text-align:left}.menu button.on{background:#2a4fd0;color:#fff}
+.team li{list-style:none;display:flex;align-items:center;gap:8px;padding:5px 0;color:var(--m);font-size:13px}.team li .dot{margin-left:auto}
+.aud li{list-style:none;padding:4px 0;color:var(--m)}
+.hero{display:flex;align-items:center;gap:20px;padding:18px 24px;background:linear-gradient(100deg,#0d2a8a,#0a1450 55%,#0b3a8c);overflow:hidden}
+.hero .bot{font-size:84px;filter:drop-shadow(0 0 18px #36c8ff)}
+.hero h1{font-size:30px;font-style:italic;line-height:1.15;margin-bottom:6px}
+.hero p{font-size:17px;margin-bottom:12px}
+.hero .ic{display:flex;gap:18px;flex-wrap:wrap;color:var(--m);font-size:12px}.hero .ic span{text-align:center}.hero .ic b{display:block;font-size:20px;background:#27409f;border-radius:9px;padding:4px 10px;margin-bottom:3px}
+.target{margin-left:auto;background:#0b1750;border:1px solid var(--b);border-radius:12px;padding:12px 16px;white-space:nowrap}
+.gh{display:flex;align-items:center;gap:14px;margin:4px 4px 10px;font-size:17px;font-weight:600}.pill{font-size:12px;font-weight:400;border:1px solid #1d6b47;color:var(--g);padding:3px 12px;border-radius:16px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.ag{border-radius:12px;padding:10px 12px;border:1px solid var(--c);background:linear-gradient(160deg,color-mix(in srgb,var(--c) 22%,#0a1240),#0a1240);position:relative}
+.ag .top{display:flex;gap:10px;align-items:center}.ag .em{font-size:44px;filter:drop-shadow(0 0 8px var(--c))}
+.ag h3{font-size:14px;margin-bottom:2px}.ag p{font-size:12px;color:var(--m)}
+.bar{height:8px;border-radius:6px;background:#ffffff1f;margin:10px 0 6px;overflow:hidden}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--c),#fff8);border-radius:6px;transition:width .3s}
+.st{display:flex;justify-content:space-between;font-size:12px}.st.ok{color:var(--g)}.st.run{color:#ffd35c}.st.wait{color:var(--m)}
+.right .card{margin-bottom:14px}.right h4{font-size:16px;margin-bottom:10px}
+.feed{max-height:290px;overflow:auto}.feed div{display:flex;gap:10px;padding:5px 0;font-size:12.5px}.feed time{color:var(--m);min-width:38px}
+.kv{display:flex;justify-content:space-between;padding:4px 0;font-size:13px}.kv span{color:var(--m)}
+.done{border-color:#1d8a4f;background:linear-gradient(#0e3b32,#0a2a2a);text-align:center}
+.big{width:100%;padding:12px;border-radius:12px;background:linear-gradient(#1aa0ff,#2f6bff);font-weight:700;font-size:16px;margin-top:8px;box-shadow:0 0 16px #1aa0ff77;transition:0.2s}
+.big:hover{filter:brightness(1.1)}
+.bot2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;margin-top:14px}
+.files{display:flex;gap:10px;margin-top:10px;overflow-x:auto}.file{min-width:95px;font-size:11px;color:var(--m)}.file b{display:block;height:80px;border-radius:9px;background:linear-gradient(#c8641e,#3a1a5a);display:grid;place-items:center;font-size:26px;margin-bottom:4px}.file.d b{background:#1b2c7a}
+.sm{width:auto;padding:8px 18px;margin:0;font-size:14px}
+.vid-box{height:150px;border-radius:10px;margin-top:10px;background:#000;display:flex;justify-content:center;align-items:center;overflow:hidden;position:relative}
+.vid-box canvas{width:100%;height:100%;object-fit:cover}
+footer{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:14px 24px;border-top:1px solid var(--b);color:var(--m)}
+#toast{position:fixed;left:50%;bottom:20px;transform:translate(-50%,40px);opacity:0;background:#1b3aa8;border:1px solid #6b8cff;padding:10px 18px;border-radius:12px;transition:.3s;pointer-events:none;z-index:9}#toast.s{opacity:1;transform:translate(-50%,0)}
+@media(max-width:1100px){.wrap{grid-template-columns:1fr}.right{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}.team,.aud{display:none}}
+@media(max-width:700px){.grid,.bot2{grid-template-columns:1fr}.hero{flex-wrap:wrap}}
+</style></head>
+<body>
+<header>
+<div class="logo"><i>▶</i><div><b>RIYAD AI AGENCY</b><small>Your 24/7 YouTube Growth Partner</small></div></div>
+<nav id="nav"><button class="on">Dashboard</button><button>Projects</button><button>Templates</button><button>Settings</button></nav>
+<span class="live">24/7 Live</span><button class="bell" id="bell" aria-label="Notifications">🔔<span id="bn">3</span></button>
+<div class="user"><i>PD</i><div><b>PD Official</b><small>Free Plan</small></div></div>
+</header>
+<div class="wrap">
+<aside>
+<button class="np" id="np">＋ New Project</button>
+<div class="menu card" id="menu"><button class="on">🏠 Home</button><button>🎬 My Videos</button><button>🤖 Agents</button><button>📄 Templates</button><button>🕘 History</button><button>⚙️ Settings</button></div>
+<div class="card team" style="margin-top:14px"><b>AI Team Status</b><div style="color:var(--g);margin:8px 0 4px">● All Agents Online <small id="onl" style="color:var(--m)">8/8 Active</small></div><ul id="tl"></ul></div>
+<div class="card aud" style="margin-top:14px"><b>Target Audience</b><ul><li>🇺🇸 USA (Main)</li><li>🇨🇦 Canada</li><li>🇬🇧 UK</li><li>🇦🇺 Australia</li><li>🌎 South America</li></ul></div>
+</aside>
+<main>
+<section class="card hero"><div class="bot">🤖</div><div><h1>AI Agents Build Your<br>YouTube Content</h1><p>From idea to upload — Fully Automated!</p>
+<div class="ic"><span><b>🔍</b>Research</span><span><b>📝</b>Script</span><span><b>🎞️</b>Video</span><span><b>🖼️</b>Thumbnail</span><span><b>🚀</b>Ready to Upload</span></div></div>
+<div class="target">🎯 Target<br><b>USA &amp; Worldwide</b></div></section>
+<div class="gh" style="margin-top:14px">✨ AI Agent Team Working... <span class="pill">● Real-time • 24/7</span></div>
+<div class="grid" id="grid"></div>
+<div class="bot2">
+<section class="card"><div class="gh" style="justify-content:space-between;margin:0">📁 Generated Files <button class="big sm" id="dall">Download All</button></div>
+<div class="files"><div class="file"><b>▶</b>Never Give Up Motivational Video.mp4<br>0:30 • 28.7 MB</div><div class="file"><b>🖼️</b>Thumbnail.jpg<br>1.2 MB</div><div class="file d"><b>📄</b>Script.txt<br>2.4 KB</div><div class="file d"><b>SEO</b>SEO Details.txt<br>1.1 KB</div></div></section>
+<section class="card"><b>▶ Video Canvas Preview</b>
+<div class="vid-box"><canvas id="previewCanvas" width="300" height="150"></canvas></div>
+<div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+<button id="playBtn" style="background:#2f7bff;padding:5px 14px;border-radius:6px;font-weight:bold">▶ Play Preview</button>
+<span id="tm" style="font-size:12px;color:var(--m)">0:00 / 0:30</span>
+</div>
+</section>
+</div>
+</main>
+<aside class="right">
+<section class="card"><h4>⚡ Live Activity</h4><div class="feed" id="feed"></div></section>
+<section class="card"><h4>Current Task</h4><div style="display:flex;gap:10px;align-items:center"><span style="font-size:30px">🎬</span><div><b id="ct">Video Agent</b><br><small style="color:var(--m)" id="cd">Generating video scenes...</small></div></div><div class="bar" style="--c:#2f7bff"><i id="cb"></i></div><div style="text-align:right" id="cp">0%</div></section>
+<section class="card"><h4>Project Details</h4><div class="kv"><span>Title</span><b>Never Give Up - Motivational</b></div><div class="kv"><span>Category</span>Motivation</div><div class="kv"><span>Age Group</span>18-35 (USA)</div><div class="kv"><span>Language</span>English</div><div class="kv"><span>Created</span><span id="cr" style="color:var(--t)"></span></div>
+<div class="card done" style="margin:10px 0 0"><b id="dt">Almost Done!</b><br><small id="ds">Final package will be ready soon.</small></div></section>
+<section class="card done"><div style="font-size:30px">☁️️</div><b style="font-size:16px">Download Your Video</b><br><small>Ready to upload on YouTube</small><button class="big" id="dn" disabled style="opacity:.5">Download Now</button><small style="color:var(--m)">MP4 • Thumbnail • Script • SEO</small></section>
+</aside></div>
+<footer><span>🚀 Create Amazing Content • Reach Global Audience • Powered by AI</span><i>Dream → Create → Go Global 🌐</i></footer>
+<div id="toast" role="status"></div>
+
+<script>
+const A=[["Research Agent","Finding trending topics & latest news (USA)","🔎","#3b82f6","Research agent found trending topics"],
+["Analyzer Agent","Analyzing audience, trends & keywords","📊","#a855f7","Analyzer agent completed analysis"],
+["Category Agent","Selecting best category for maximum reach","🧩","#f59e0b","Category agent selected: Motivation"],
+["Script Agent","Writing engaging script (voice + subtitle)","📝","#22c55e","Script agent finished the script"],
+["Video Agent","Editing video, adding effects & transitions","🎥","#ef4444","Visual agent generated video scenes"],
+["Thumbnail Agent","Creating attractive thumbnail (CTR optimized)","🖼️","#06b6d4","Thumbnail agent designed thumbnail"],
+["SEO Agent","Generating title, description, tags, hashtags","🏷️","#a78bfa","SEO agent created metadata"],
+["Quality Agent","Checking grammar, quality & safety","✅","#3b9bff","Quality check agent finished review"],
+["Finalizer Agent","Combining everything into a final package","📦","#c026d3","Finalizer agent prepared final package"]];
+
+let P=[100,100,100,100,95,80,100,70,0],timer;
+const $=id=>document.getElementById(id),pad=n=>String(n).padStart(2,"0");
+const clock=()=>{const d=new Date();return pad(d.getHours())+":"+pad(d.getMinutes())};
+
+function toast(t){const e=$("toast");e.textContent=t;e.classList.add("s");clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove("s"),2200)}
+
+function build(){$("grid").innerHTML=A.map((a,i)=>`<div class="ag" style="--c:${a[3]}"><div class="top"><span class="em">${a[2]}</span><div><h3>${i+1}. ${a[0]}</h3><p>${a[1]}</p></div></div><div class="bar"><i id="b${i}"></i></div><div class="st" id="s${i}"></div></div>`).join("");
+$("tl").innerHTML='<li>👔 CEO Agent<span class="dot"></span></li>'+A.slice(0,9).map(a=>`<li>${a[2]} ${a[0]}<span class="dot"></span></li>`).join("")}
+
+function render(){let cur=-1;P.forEach((v,i)=>{$("b"+i).style.width=v+"%";const s=$("s"+i);
+if(v>=100){s.className="st ok";s.innerHTML="<span>✔ Completed</span><span>100%</span>"}
+else if(v>0){s.className="st run";s.innerHTML=`<span>◌ Processing...</span><span>${Math.floor(v)}%</span>`;cur=i}
+else{s.className="st wait";s.innerHTML="<span>○ Pending...</span><span></span>"}});
+if(cur<0)cur=P.every(v=>v>=100)?8:P.findIndex(v=>v<100);
+const a=A[Math.max(cur,0)],v=Math.floor(P[Math.max(cur,0)]);
+$("ct").textContent=a[0];$("cd").textContent=a[1];$("cb").style.width=v+"\%";$("cp").textContent=v+"%";
+const ok=P.every(v=>v>=100);$("dn").disabled=!ok;$("dn").style.opacity=ok?1:.5;
+$("dt").textContent=ok?"All Done!":"Almost Done!";$("ds").textContent=ok?"Your package is ready to download.":"Final package will be ready soon."}
+
+function log(t){const d=document.createElement("div");d.innerHTML=`<span class="dot" style="margin-top:6px;flex:none"></span><time>${clock()}</time><span>${t}</span>`;$("feed").prepend(d)}
+
+function tick(){let moved=false;
+for(let i=0;i<9;i++){if(P[i]>=100)continue;
+const ready=i===0||P[i-1]>=(i<5?100:60);
+if(ready||P[i]>0){P[i]=Math.min(100,P[i]+2+Math.random()*4);moved=true;if(P[i]>=100){P[i]=100;log(A[i][4]);if(i===8)finish()}}}
+if(!moved)clearInterval(timer);render()}
+
+function finish(){clearInterval(timer);toast("Final package is ready!");drawCanvasPreview()}
+
+function start(reset){clearInterval(timer);P=reset?[0,...Array(8).fill(0)]:[100,100,100,100,95,80,100,70,0];if(reset){$("feed").innerHTML="";log("New project started")}render();timer=setInterval(tick,400)}
+
+function downloadFile(content, fileName, mimeType) {
+    const blob = new Blob([content], { type: mimeType });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = fileName;
+    document.body.appendChild(a); a.click();
+    setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 100);
+}
+
+const SCRIPT_TEXT = "Title: Never Give Up - Shorts\n\n[0:00] Every storm runs out of rain.\n[0:10] Keep moving forward.\n[0:20] Your success is waiting.";
+const SEO_TEXT = "Title: Never Give Up | AI Shorts\nTags: motivation, success, viral, shorts\nHashtags: #motivation #shorts";
+
+$("dn").onclick = () => {
+    downloadFile(SCRIPT_TEXT, "Script.txt", "text/plain");
+    setTimeout(() => downloadFile(SEO_TEXT, "SEO-Details.txt", "text/plain"), 300);
+    toast("Downloading Script & SEO Files...");
+};
+
+$("dall").onclick = () => {
+    downloadFile(SCRIPT_TEXT + "\n\n" + SEO_TEXT, "Complete_Package.txt", "text/plain");
+    toast("Downloading Complete Package...");
+};
+
+const canvas = $("previewCanvas"), ctx = canvas.getContext("2d");
+let isPlaying = false, animId, frame = 0;
+
+function drawCanvasPreview() {
+    ctx.fillStyle = "#0a1450"; ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "#ffe14d"; ctx.font = "bold 20px sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText("NEVER GIVE UP", canvas.width / 2, canvas.height / 2 + (Math.sin(frame / 6) * 6));
+}
+
+$("playBtn").onclick = () => {
+    isPlaying = !isPlaying;
+    $("playBtn").textContent = isPlaying ? "⏸ Pause" : "▶ Play Preview";
+    if (isPlaying) {
+        function loop() {
+            if (!isPlaying) return;
+            frame++; drawCanvasPreview();
+            animId = requestAnimationFrame(loop);
+        }
+        loop();
+    } else { cancelAnimationFrame(animId); }
+};
+
+$("np").onclick = () => start(true);
+$("bell").onclick = () => { $("bn").style.display = "none"; toast("Notifications cleared") };
+const d = new Date(); $("cr").textContent = "Today, " + clock();
+
+build(); start(false); drawCanvasPreview();
+</script>
+</body>
+</html>
